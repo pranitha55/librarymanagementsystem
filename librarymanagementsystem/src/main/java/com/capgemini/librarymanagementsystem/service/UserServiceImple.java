@@ -1,6 +1,7 @@
 package com.capgemini.librarymanagementsystem.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.capgemini.librarymanagementsystem.dao.UserDAO;
 import com.capgemini.librarymanagementsystem.dto.Book;
@@ -33,22 +34,22 @@ public class UserServiceImple implements UserService{
 	}
 
 	@Override
-	public ArrayList<Book> searchBookByTitle(String bookName) {
+	public List<Book> searchBookByTitle(String bookName) {
 		return dao.searchBookByTitle(bookName);
 	}
 
 	@Override
-	public ArrayList<Book> searchBookByAuthor(String author) {
+	public List<Book> searchBookByAuthor(String author) {
 		return dao.searchBookByAuthor(author);
 	}
 
 	@Override
-	public ArrayList<Book> searchBookByCategory(String category) {
+	public List<Book> searchBookByCategory(String category) {
 		return dao.searchBookByCategory(category);
 	}
 
 	@Override
-	public ArrayList<Book> getBooksInfo() {
+	public List<Book> getBooksInfo() {
 		return dao.getBooksInfo();
 	}
 

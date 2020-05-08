@@ -396,7 +396,7 @@ public class LibraryMain {
 										break;
 
 									case 7:
-										ArrayList<Book> info = service.getBooksInfo();
+										List<Book> info = service.getBooksInfo();
 										System.out.println(String.format("%-10s %-20s %-20s %-20s %s", "BookId","BookName","BookAuthor","BookCategory","BookPublisherName"));
 										for (Book bookBean : info) {
 
@@ -716,7 +716,7 @@ public class LibraryMain {
 										break;
 
 									case 4:
-										ArrayList<Book> info = service1.getBooksInfo();
+										List<Book> info = service1.getBooksInfo();
 										System.out.println(String.format("%-10s %-20s %-20s %-20 %s", "BookId","BookName","BookAuthor","BookCategory","BookPublisherName"));
 										for (Book bookBean : info) {
 

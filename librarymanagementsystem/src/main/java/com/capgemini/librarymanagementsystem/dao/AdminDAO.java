@@ -1,7 +1,6 @@
 package com.capgemini.librarymanagementsystem.dao;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.capgemini.librarymanagementsystem.dto.Admin;
@@ -14,10 +13,10 @@ public interface AdminDAO {
 	boolean registerAdmin(Admin admin);
 	Admin loginAdmin(String email,String password);
 	boolean addBook(Book book);
-	ArrayList<Book> searchBookByAuthor(String author);
-	ArrayList<Book> searchBookByTitle(String bookName);
-	ArrayList<Book> searchBookByCategory(String category);
-	ArrayList<Book> getBooksInfo();
+	List<Book> searchBookByAuthor(String author);
+	List<Book> searchBookByTitle(String bookName);
+	List<Book> searchBookByCategory(String category);
+	List<Book> getBooksInfo();
 	boolean removeBook(int id);
 	boolean updateBook(Book book);
 	boolean bookIssue(User user,Book book);

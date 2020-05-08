@@ -1,6 +1,7 @@
 package com.capgemini.librarymanagementsystem.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.capgemini.librarymanagementsystem.db.BookDataBase;
 import com.capgemini.librarymanagementsystem.dto.Book;
@@ -33,8 +34,8 @@ public class UserDAOImple implements UserDAO {
 
 
 	@Override
-	public ArrayList<Book> searchBookByTitle(String bookName) {
-		ArrayList<Book> searchList=new ArrayList<Book>();
+	public List<Book> searchBookByTitle(String bookName) {
+		List<Book> searchList=new ArrayList<Book>();
 		for(int i=0;i<=BookDataBase.BOOK.size()-1;i++)
 		{
 			Book retrievedBook=BookDataBase.BOOK.get(i);
@@ -57,8 +58,8 @@ public class UserDAOImple implements UserDAO {
 	}
 
 	@Override
-	public ArrayList<Book> searchBookByAuthor(String author) {
-		ArrayList<Book> searchList=new ArrayList<Book>();
+	public List<Book> searchBookByAuthor(String author) {
+		List<Book> searchList=new ArrayList<Book>();
 		for(int i=0;i<=BookDataBase.BOOK.size()-1;i++)
 		{
 			Book retrievedBook=BookDataBase.BOOK.get(i);
@@ -79,8 +80,8 @@ public class UserDAOImple implements UserDAO {
 	}
 
 	@Override
-	public ArrayList<Book> searchBookByCategory(String category) {
-		ArrayList<Book> searchList=new ArrayList<Book>();
+	public List<Book> searchBookByCategory(String category) {
+		List<Book> searchList=new ArrayList<Book>();
 		for(int i=0;i<=BookDataBase.BOOK.size()-1;i++)
 		{
 			Book retrievedBook=BookDataBase.BOOK.get(i);
@@ -102,7 +103,7 @@ public class UserDAOImple implements UserDAO {
 	}
 
 	@Override
-	public ArrayList<Book> getBooksInfo() {
+	public List<Book> getBooksInfo() {
 		return BookDataBase.BOOK;
 	}
 

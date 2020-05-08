@@ -13,7 +13,7 @@ import com.capgemini.librarymanagementsystem.dto.User;
 import com.capgemini.librarymanagementsystem.exception.LMSException;
 
 public class AdminDAOImple implements AdminDAO {
-	
+
 	@Override
 	public boolean registerAdmin(Admin admin) {
 		for(Admin ad : BookDataBase.ADMIN) {
@@ -46,10 +46,10 @@ public class AdminDAOImple implements AdminDAO {
 		BookDataBase.BOOK.add(book);
 		return true;
 	}
-	
+
 	@Override
-	public ArrayList<Book> searchBookByAuthor(String author) {
-		ArrayList<Book> searchList=new ArrayList<Book>();
+	public List<Book> searchBookByAuthor(String author) {
+		List<Book> searchList=new ArrayList<Book>();
 		for(int i=0;i<=BookDataBase.BOOK.size()-1;i++)
 		{
 			Book retrievedBook=BookDataBase.BOOK.get(i);
@@ -69,10 +69,10 @@ public class AdminDAOImple implements AdminDAO {
 		}		
 
 	}
-	
+
 	@Override
-	public ArrayList<Book> searchBookByTitle(String bookName) {
-		ArrayList<Book> searchList=new ArrayList<Book>();
+	public List<Book> searchBookByTitle(String bookName) {
+		List<Book> searchList=new ArrayList<Book>();
 		for(int i=0;i<=BookDataBase.BOOK.size()-1;i++)
 		{
 			Book retrievedBook=BookDataBase.BOOK.get(i);
@@ -93,10 +93,10 @@ public class AdminDAOImple implements AdminDAO {
 		}
 
 	}
-	
+
 	@Override
-	public ArrayList<Book> searchBookByCategory(String category) {
-		ArrayList<Book> searchList=new ArrayList<Book>();
+	public List<Book> searchBookByCategory(String category) {
+		List<Book> searchList=new ArrayList<Book>();
 		for(int i=0;i<=BookDataBase.BOOK.size()-1;i++)
 		{
 			Book retrievedBook=BookDataBase.BOOK.get(i);
@@ -135,8 +135,8 @@ public class AdminDAOImple implements AdminDAO {
 
 	@SuppressWarnings("unused")
 	@Override
-public boolean updateBook(Book book) {
-		
+	public boolean updateBook(Book book) {
+
 		for(int i=0;i<=BookDataBase.BOOK.size()-1;i++)
 		{
 			Book retrievedBook=BookDataBase.BOOK.get(i);
@@ -146,14 +146,14 @@ public boolean updateBook(Book book) {
 				retrievedBook.setCategory(book.getCategory());
 				return true;
 			}
-			
+
 			else {
 				throw new LMSException("Invalid Book");
 			}
 		} 
 		throw new LMSException("Book not updated");
 	}
-	
+
 	@Override
 	public boolean bookIssue(User user, Book book) {
 		boolean isValid = false;
@@ -211,7 +211,7 @@ public boolean updateBook(Book book) {
 			throw new LMSException("Book data or Student data is incorrect");
 		}
 	}
-	
+
 	@Override
 	public boolean isBookReceived(User user, Book book) {
 		boolean isValid = false;
@@ -245,20 +245,14 @@ public boolean updateBook(Book book) {
 		}
 		return false;
 	}
-	
-	
 
-
-	
-
-	
 
 	@Override
-	public ArrayList<Book> getBooksInfo() {
+	public List<Book> getBooksInfo() {
 		return BookDataBase.BOOK;
 	}
 
-	
+
 
 	@Override
 	public List<User> showUsers() {
@@ -286,12 +280,12 @@ public boolean updateBook(Book book) {
 		return info;
 	}
 
-	
-	
-	}
 
 
-	
+}
 
-	
+
+
+
+
 
