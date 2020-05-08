@@ -27,7 +27,9 @@ public final class LMSMain {
 		
 		@Autowired
 		private UserService service;
+		@Autowired
 		private AdminService adminService;
+		@Autowired
 		private AdminUserService adminUserService;
 
 		@PostMapping(path = "/addUser", consumes = { MediaType.APPLICATION_JSON_VALUE,
@@ -78,14 +80,14 @@ public final class LMSMain {
 
 		}
 
-		@PostMapping(path = "/login", consumes = { MediaType.APPLICATION_JSON_VALUE,
-				MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
-						MediaType.APPLICATION_XML_VALUE })
-		public LMSResponse  login(@RequestBody String email, String password) {
+		@PostMapping(path = "/login", 
+				consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},
+				produces= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+		public LMSResponse authentication(String email, String password) {
 			User userLogin = adminUserService.login(email, password);
-			LMSResponse  response = new LMSResponse ();
+			LMSResponse response = new LMSResponse();
 			if (userLogin != null) {
-				response.setMessage("Login succesfully");
+				response.setMessage("Login succesfull");
 			} else {
 				response.setError(true);
 				response.setMessage("Invalid credentials,Please try again");

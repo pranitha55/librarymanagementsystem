@@ -26,11 +26,13 @@ import com.capgemini.librarymanagementsystem_springlms.exception.LMSException;
 @Repository
 public class AdminDAOImple implements AdminDAO {
 	
-	@PersistenceUnit
-	private EntityManagerFactory factory ;
+	
 	EntityManager manager = null;
 	EntityTransaction transaction = null;
 	int noOfBooks;
+	
+	@PersistenceUnit
+	private EntityManagerFactory factory ;
 
 	@Override
 	public boolean addBook(Book book) {

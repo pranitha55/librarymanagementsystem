@@ -3,12 +3,12 @@ package com.capgemini.librarymanagementsystem_springlms.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.capgemini.librarymanagementsystem_springlms.dao.AdminDAO;
 import com.capgemini.librarymanagementsystem_springlms.dao.AdminUserDAO;
 import com.capgemini.librarymanagementsystem_springlms.dto.Book;
 import com.capgemini.librarymanagementsystem_springlms.dto.User;
-
+@Service
 public class AdminUserServiceImple implements AdminUserService {
 	@Autowired
 	private AdminUserDAO dao;	

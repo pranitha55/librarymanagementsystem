@@ -20,11 +20,13 @@ import com.capgemini.librarymanagementsystem_springlms.exception.LMSException;
 
 @Repository
 public class AdminUserDAOImple implements AdminUserDAO {
-	@PersistenceUnit
-	private EntityManagerFactory factory ;
+	
 	EntityManager manager = null;
 	EntityTransaction transaction = null;
 	int noOfBooks;
+	
+	@PersistenceUnit
+	private EntityManagerFactory factory ;
 	
 	@Override
 	public boolean register(User user) {
@@ -50,9 +52,8 @@ public class AdminUserDAOImple implements AdminUserDAO {
 	@Override
 	public User login(String email, String password) {
 		try {
-			factory = Persistence.createEntityManagerFactory("TestPersistence");
 			manager = factory.createEntityManager();
-			String jpql="select u from User u where u.email=:email and u.password=:password";
+			String jpql="select u from UsersBean u where u.email=:email and u.password=:password";
 			TypedQuery<User> query = manager.createQuery(jpql,User.class);
 			query.setParameter("email", email);
 			query.setParameter("password", password);
@@ -61,9 +62,6 @@ public class AdminUserDAOImple implements AdminUserDAO {
 		}catch(Exception e){
 			System.err.println(e.getMessage());
 			return null;
-		}finally {
-			manager.close();
-			factory.close();
 		}
 	}
 
@@ -73,29 +71,24 @@ public class AdminUserDAOImple implements AdminUserDAO {
 
 	@Override
 	public List<Book> searchBookById(int bookId) {
-		try {
-			factory = Persistence.createEntityManagerFactory("TestPersistence");
+		try{
 			manager = factory.createEntityManager();
-			String jpql = "select b from Book b where b.bookId=:bookId";
+			String jpql = "select b from Book b where b.bId=:bId";
 			TypedQuery<Book> query = manager.createQuery(jpql,Book.class);
-			query.setParameter("bookId", bookId);
+			query.setParameter("bId", bookId);
 			List<Book> recordList = query.getResultList();
 			return recordList; 
 		}catch (Exception e) {
 			System.err.println(e.getMessage());
 			return null;
-		}finally {
-			manager.close();
-			factory.close();
 		}
 	}
 
 	@Override
 	public List<Book> searchBookByTitle(String bookName) {
-		try {
-			factory = Persistence.createEntityManagerFactory("TestPersistence");
+		try{
 			manager = factory.createEntityManager();
-			String jpql = "select b from Book b where b.bookName=:bookName";
+			String jpql = "select b from BookBean b where b.bookName=:bookName";
 			TypedQuery<Book> query = manager.createQuery(jpql,Book.class);
 			query.setParameter("bookName", bookName);
 			List<Book> recordList = query.getResultList();
@@ -103,9 +96,6 @@ public class AdminUserDAOImple implements AdminUserDAO {
 		}catch (Exception e) {
 			System.err.println(e.getMessage());
 			return null;
-		}finally {
-			manager.close();
-			factory.close();
 		}
 	}
 
@@ -130,14 +120,13 @@ public class AdminUserDAOImple implements AdminUserDAO {
 
 	@Override
 	public boolean updatePassword(int id, String password, String newPassword, String role) {
-		try {
-			factory = Persistence.createEntityManagerFactory("TestPersistence");
+		try{
 			manager = factory.createEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			String jpql = "select u from User u where u.userId=:userId and u.role=:role and u.password=:password";
+			String jpql = "select u from User u where u.uId=:uId and u.role=:role and u.password=:password";
 			TypedQuery<User> query = manager.createQuery(jpql,User.class);
-			query.setParameter("userId", id);
+			query.setParameter("uId", id);
 			query.setParameter("role", role);
 			query.setParameter("password", password);
 			User rs = query.getSingleResult();
@@ -152,13 +141,10 @@ public class AdminUserDAOImple implements AdminUserDAO {
 
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
-			transaction.rollback();
 			return false;
-		} finally {
-			manager.close();
-			factory.close();
-		}
+		} 
 	}
+	
 
 
 
